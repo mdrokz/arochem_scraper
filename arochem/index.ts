@@ -1,7 +1,7 @@
 import fetch from "./fetch";
 
 import { load } from "cheerio";
-import { scrape_attars } from "./scrape";
+import { Attar, scrape_attars } from "./scrape";
 
 export const BASE_URL = "https://arochem.com";
 
@@ -11,9 +11,14 @@ const $ = load(html);
 
 const attar_sections = $('.grid.grid--center');
 
-type Section = Record<string, string[]>;
+type Section = string
 
-let section_links: Section = {};
+type Sections = Record<string, string[]>;
+
+let section_links: Sections = {};
+
+
+const data: Record<Section,Attar[]>[] = [];
 
 
 for (const sections of attar_sections[0].children) {
@@ -29,6 +34,8 @@ for (const sections of attar_sections[0].children) {
     section_links[section_name.trim()] = section;
 }
 
-for (const links of Object.keys(section_links)) {
-    await scrape_attars(section_links[links]);
+for (const keys of Object.keys(section_links)) {
+    data.push({[keys]: await scrape_attars(section_links[keys])});
 }
+
+console.log(data);
