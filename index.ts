@@ -40,4 +40,4 @@ for (const keys of Object.keys(section_links)) {
     data.push({[keys]: await scrape_attars(section_links[keys])});
 }
 
-writeFileSync("aromachem.json", JSON.stringify(data, null, 2));
+writeFileSync("arochem.json", JSON.stringify(data, null, 2));
