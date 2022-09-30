@@ -3,6 +3,8 @@ import fetch from "./fetch";
 import { load } from "cheerio";
 import { Attar, scrape_attars } from "./scrape";
 
+import { writeFileSync } from "fs";
+
 export const BASE_URL = "https://arochem.com";
 
 const html = await fetch(BASE_URL);
@@ -38,4 +40,4 @@ for (const keys of Object.keys(section_links)) {
     data.push({[keys]: await scrape_attars(section_links[keys])});
 }
 
-console.log(data);
+writeFileSync("aromachem.json", JSON.stringify(data, null, 2));
