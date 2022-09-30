@@ -17,7 +17,7 @@ export const scrape_attars = async (section_links: string[]): Promise<Attar> => 
         for (const attar_link of attar_links) {
             if (attar_link) {
                 const split = attar_link.split('/')
-                const name = attar_link[split.length - 1];
+                const name = split[split.length - 1];
                 const html = await fetch(`${BASE_URL}${attar_link}`);
                 const $ = load(html);
 
