@@ -18,7 +18,7 @@ type Sections = Record<string, string[]>;
 let section_links: Sections = {};
 
 
-const data: Record<Section,Attar[]>[] = [];
+const data: Record<Section,Attar>[] = [];
 
 
 for (const sections of attar_sections[0].children) {
