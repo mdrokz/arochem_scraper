@@ -1,7 +1,7 @@
 import {get} from 'http';
 
 
-export function fetch(url: string): Promise<string> {
+export function fetch(url: `https://${string}.com`): Promise<string> {
     return new Promise((resolve, reject) => {
         get(url, (res) => {
             let data = '';
