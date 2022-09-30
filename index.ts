@@ -19,8 +19,9 @@ type Sections = Record<string, string[]>;
 
 let section_links: Sections = {};
 
+type Data = Record<string, Attar> & { id: number };
 
-const data: Record<Section,Attar>[] = [];
+const data: Data[] = [];
 
 
 for (const sections of attar_sections[0].children) {
@@ -37,7 +38,9 @@ for (const sections of attar_sections[0].children) {
 }
 
 for (const keys of Object.keys(section_links)) {
-    data.push({[keys]: await scrape_attars(section_links[keys])});
+    // generate random number
+    let id = Math.floor(Math.random() * section_links[keys].length);
+    data.push(Object.assign({ "id": id }, { [keys]: await scrape_attars(section_links[keys]) }))
 }
 
 writeFileSync("arochem.json", JSON.stringify(data, null, 2));
