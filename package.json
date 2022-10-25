@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "ts-node --esm --experimental-specifier-resolution node ./index.ts",
-    "dev": "NODE_OPTIONS='--no-warnings --loader ts-node/esm --experimental-specifier-resolution node' nodemon --watch '.' -e ts,tsx --exec ts-node ./index.ts"
+    "dev": "NODE_OPTIONS='--no-warnings --loader ts-node/esm --experimental-specifier-resolution node' nodemon --watch '.' -e ts,tsx --exec ts-node ./index.ts",
+    "debug-search": "NODE_OPTIONS='--no-warnings --loader ts-node/esm --experimental-specifier-resolution node' nodemon --watch '.' -e ts,tsx --exec ts-node ./search.ts"
   },
   "author": "mdrokz",
   "license": "ISC",

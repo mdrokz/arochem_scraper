@@ -40,7 +40,11 @@ for (const sections of attar_sections[0].children) {
 for (const keys of Object.keys(section_links)) {
     // generate random number
     let id = Math.floor(Math.random() * section_links[keys].length);
-    data.push(Object.assign({ "id": id }, { [keys]: await scrape_attars(section_links[keys]) }))
+    try {
+        data.push(Object.assign({ "id": id }, { [keys]: await scrape_attars(section_links[keys]) }))
+    } catch(e) {
+        console.error(e);
+    }
 }
 
 writeFileSync("arochem.json", JSON.stringify(data, null, 2));
