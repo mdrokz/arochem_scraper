@@ -19,7 +19,7 @@ type Sections = Record<string, string[]>;
 
 let section_links: Sections = {};
 
-type Data = Record<string, Attar> & { id: number };
+type Data = Record<string, Attar[]> & { id: number };
 
 const data: Data[] = [];
 

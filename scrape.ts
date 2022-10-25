@@ -2,11 +2,11 @@ import { load } from "cheerio";
 import { BASE_URL } from ".";
 import fetch from "./fetch";
 
-export type Attar = Record<string, Record<string, string>>;
+export type Attar = { name: string, section: string, description: string };
 
-export const scrape_attars = async (section_links: string[]): Promise<Attar> => {
+export const scrape_attars = async (section_links: string[]): Promise<Attar[]> => {
 
-    const attar = {};
+    const attar: Attar[] = [];
 
     for (const section_link of section_links) {
         const split = section_link.split('/');
@@ -27,7 +27,7 @@ export const scrape_attars = async (section_links: string[]): Promise<Attar> => 
 
                 console.log(name, section_name);
 
-                attar[name] = { [section_name]: description };
+                attar.push({ name, section: section_name, description });
             };
         }
     }
